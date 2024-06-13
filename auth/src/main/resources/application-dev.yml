@@ -1,0 +1,11 @@
+# Place properties here to holistically override or set Spring environment
+# property values. These values will override anything set in your library
+# component override configs, or any properties inherited from Broadleaf
+# or Spring. Also, note that you can create additional versions of this
+# file to achieve different environment profiles according to Spring's
+# environment profile support:
+# https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files.profile-specific
+
+spring:
+  cache:
+    type: none # turn off caching to allow for iterating data in dev at runtime without worrying about cache interference

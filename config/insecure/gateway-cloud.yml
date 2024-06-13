@@ -1,0 +1,45 @@
+broadleaf:
+  gateway:
+    proxyurls:
+      tenant: https://core:8447
+      pricing: https://core:8447
+      creditaccount: https://core:8447
+      commerceweb: https://commerceweb:4000
+      bulkoperations: https://core:8447
+      paymenttransaction: https://core:8447
+      openapi: https://openapi-ui:3003
+      import: https://core:8447
+      content: https://core:8447
+      orderoperation: https://core:8447
+      adminweb: https://adminweb:3000
+      fulfillment: https://core:8447
+      catalog: https://core:8447
+      order: https://core:8447
+      metadata: https://core:8447
+      sandbox: https://core:8447
+      inventory: https://core:8447
+      customer: https://core:8447
+      notification: https://core:8447
+      scheduledjob: https://core:8447
+      offer: https://core:8447
+      shipping: https://core:8447
+      authapi: https://auth:8443
+      cartoperation: https://core:8447
+      adminuser: https://core:8447
+      cart: https://core:8447
+      indexer: https://core:8447
+      vendor: https://core:8447
+      menu: https://core:8447
+      adminnavigation: https://core:8447
+      asset: https://core:8447
+      campaign: https://core:8447
+      search: https://core:8447
+      auth: https://auth:8443
+      catalogbrowse: https://core:8447
+      ratings: https://core:8447
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          defaultbrokerport: '9094'

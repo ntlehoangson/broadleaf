@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.broadleafcommerce.microservices</groupId>
+        <artifactId>broadleaf-microservices-flex-parent</artifactId>
+        <version>2.1.1-GA</version>
+        <relativePath/>
+    </parent>
+    <repositories>
+        <repository>
+            <id>broadleaf-microservices</id>
+            <name>Broadleaf Microservices</name>
+            <url>https://repository.broadleafcommerce.com/repository/microservices/</url>
+        </repository>
+    </repositories>
+    <artifactId>microservice-ingestion-data</artifactId>
+    <groupId>com.hoangson.microservices</groupId>
+    <name>Data Ingestion Starter</name>
+    <description>Data Ingestion Starter</description>
+    <version>1.0.0-SNAPSHOT</version>
+    <properties>
+        <skip-spring-boot>false</skip-spring-boot>
+        <flex-package-name>data</flex-package-name>
+        <skip-docker-image>false</skip-docker-image>
+        <limit-image-target-platform>linux/amd64</limit-image-target-platform>
+        <image-deployment-repo-domain>repository.broadleafcommerce.com</image-deployment-repo-domain>
+        <image-deployment-repo-port>5001</image-deployment-repo-port>
+        <image-tag-prefix>broadleaf-demo</image-tag-prefix>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-microservices-starter-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.ignite</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.hoangson.microservices</groupId>
+            <artifactId>microservice-flexpackage-manifest</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-microservices-starter-data-loader</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: adminnav-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-admin-navigation-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: adminuser-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-admin-user-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: asset-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-asset-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: cart-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-cart-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: cartops-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-cart-operation-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: catalog-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-catalog-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: catalogbrowse-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-catalog-browse-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: content-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-content-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: customer-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-customer-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: fulfillment-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-fulfillment-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: import-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-import-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: indexer-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-fulfillment-indexer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-order-indexer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-customer-indexer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-catalog-indexer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-indexer-core</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: inventory-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-inventory-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: menu-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-menu-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: metadata-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-metadata-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: notification-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-notification-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: offer-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-offer-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: order-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-order-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: orderops-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-order-operation-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: paymenttransaction-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-payment-transaction-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: pricing-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-pricing-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: ratings-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-rating-and-review-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: sandbox-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-sandbox-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: scheduledjob-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-scheduled-job-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: search-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-fulfillment-search</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-order-search</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-customer-search</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-catalog-search</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: shipping-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-shipping-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: tenant-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-tenant-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: vendor-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-vendor-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: creditaccount-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-credit-account-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: bulkops-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-bulk-operations-services</artifactId>
+        </dependency>
+        <!--Dependencies for flex unit: auth-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-authentication-services</artifactId>
+        </dependency>
+        <!--Config Server Dependencies-->
+        <dependency>
+            <!--Label: ConfigServer-->
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-config-server-client</artifactId>
+        </dependency>
+        <!--Extension Dependencies-->
+        <!--Supporting Dependencies-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.broadleafcommerce.microservices</groupId>
+                <artifactId>changelog-extraction-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <artifactId>microservice-flexpackage-one</artifactId>
+                        <groupId>com.hoangson.microservices</groupId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <artifactId>microservice-flexpackage-auth</artifactId>
+                        <groupId>com.hoangson.microservices</groupId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.broadleafcommerce.microservices.starter.data.Loader</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

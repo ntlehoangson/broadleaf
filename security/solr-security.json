@@ -1,0 +1,46 @@
+{
+  "authentication" : {
+    "blockUnknown" : false,
+    "class" : "solr.BasicAuthPlugin",
+    "credentials" : {
+      "admin" : "xZ9TxC1UhPQYZbfJEzLd41Q/M3YSTsdZDiF9vOUhDHk= r4NeyCIW5O08QczY+njRAGGKoYUkIgcpLbfJ3FDlyyY=",
+      "indexer" : "CtLOY0BuaEdUCf51+UMic6YVrihxdK0EBBVepV896OY= bmhofGcLv1kEuFPY3LNU7h65jeNtdZxVDXtBEJ1E5GA=",
+      "searcher" : "EiZF3CPVt6Zk5zFWb2ql4bQ0+4DdpC6tIbrRH+U3pdQ= 9uEDme6CdjiTsAXrsswbXjqykVMUhdXkO5DJaPXXhL0=",
+      "k8s" : "A6vV87PaY9/NJNBBLDciBulj+Mj3hDy2Jhl0HetpBZs= mWc41/psFG26jklzKXpI0X8mJuPago9DH1nk43DAXBI="
+    }
+  },
+  "authorization" : {
+    "class" : "solr.RuleBasedAuthorizationPlugin",
+    "permissions" : [ {
+      "name" : "core-admin-edit",
+      "role" : [ "indexer", "admin" ]
+    }, {
+      "name" : "core-admin-read",
+      "role" : [ "searcher", "indexer", "admin" ]
+    }, {
+      "name" : "collection-admin-edit",
+      "role" : [ "indexer", "admin" ]
+    }, {
+      "name" : "collection-admin-read",
+      "role" : [ "searcher", "indexer", "admin" ]
+    }, {
+      "name" : "update",
+      "role" : [ "indexer", "admin" ]
+    }, {
+      "name" : "read",
+      "role" : [ "searcher", "indexer", "admin" ]
+    }, {
+      "name" : "all",
+      "role" : "admin"
+    }, {
+      "path" : "/admin/ping",
+      "role" : "*"
+    } ],
+    "user-role" : {
+      "admin" : "admin",
+      "indexer" : "indexer",
+      "searcher" : "searcher",
+      "k8s" : "k8s"
+    }
+  }
+}

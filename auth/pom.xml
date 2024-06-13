@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.broadleafcommerce.microservices</groupId>
+        <artifactId>broadleaf-microservices-flex-parent</artifactId>
+        <version>2.1.1-GA</version>
+        <relativePath/>
+    </parent>
+    <repositories>
+        <repository>
+            <id>broadleaf-microservices</id>
+            <name>Broadleaf Microservices</name>
+            <url>https://repository.broadleafcommerce.com/repository/microservices/</url>
+        </repository>
+    </repositories>
+    <artifactId>microservice-flexpackage-auth</artifactId>
+    <groupId>com.hoangson.microservices</groupId>
+    <name>Auth Flexpackage Starter</name>
+    <description>Auth Flexpackage Starter</description>
+    <version>1.0.0-SNAPSHOT</version>
+    <properties>
+        <skip-spring-boot>false</skip-spring-boot>
+        <skip-key-tool>false</skip-key-tool>
+        <flex-package-name>auth</flex-package-name>
+        <skip-mapper-cache>false</skip-mapper-cache>
+        <limit-image-target-platform>linux/amd64</limit-image-target-platform>
+        <skip-docker-image>false</skip-docker-image>
+        <skip-flex-changelog>false</skip-flex-changelog>
+        <spring-profiles>-Dspring.profiles.active=dev</spring-profiles>
+        <spring-boot-maven-debug-port>8000</spring-boot-maven-debug-port>
+        <image-deployment-repo-domain>repository.broadleafcommerce.com</image-deployment-repo-domain>
+        <image-deployment-repo-port>5001</image-deployment-repo-port>
+        <image-tag-prefix>broadleaf-demo</image-tag-prefix>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.hoangson.microservices</groupId>
+            <artifactId>microservice-flexpackage-manifest</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!--Dependencies for flex unit: auth-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-authentication-services</artifactId>
+        </dependency>
+        <!--Supporting Dependencies-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <!--Config Server Dependencies-->
+        <dependency>
+            <!--Label: ConfigServer-->
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-config-server-client</artifactId>
+        </dependency>
+        <!--Extension Dependencies-->
+        <!--Additional Dependencies-->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-common-extension-compatibility-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-common-extension-compatibility</artifactId>
+        </dependency>
+    </dependencies>
+</project>

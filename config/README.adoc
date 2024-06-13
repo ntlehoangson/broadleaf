@@ -1,0 +1,62 @@
+# Spring Cloud Config Resources
+
+This directory contains sample environment properties hosted by Spring Cloud Config Server. This location is local to your development machine and is intended for testing purposes when running the stack (including config server) locally in docker-compose. Moving the configuration files contained here to a real, restricted GIT repo is a valid next step. Refer to the notes in the sample `config` section from `docker-compose.yml` below for additional details around GIT repo configuration. Also, refer to https://developer.broadleafcommerce.com/shared-concepts/enhanced-env-config for more information on integrating Spring Cloud Config Server with Broadleaf microservices.
+
+WARNING: Do not create different profile versions of your secure yaml files with the intent to serve them from the same config server instance. This is not secure. For example, you should not be able to add a "prod" profile to your client configuration and get production credentials from a development instance of config server. Separate config servers with separate repos should be used for each environment. Note, it is fine to use profile-based config files for insecure properties.
+
+[source,yaml]
+----
+config:
+  environment:
+    SPRING_PROFILES_ACTIVE: secure,composite
+    SPRING_SECURITY_USER_NAME: 'configClient'
+    SERVER_SSL_KEYSTORE: 'file:/var/keys/https-keystore.jks'
+    ENCRYPT_KEYSTORE_LOCATION: 'file:/var/keys/file-encryption.jks'
+
+    # Using a file system git repository simulation for demonstration.
+    # Uncomment values for a real Git source control location.
+    # See https://developer.broadleafcommerce.com/shared-concepts/enhanced-env-config
+    # for more details.
+
+    # In this example, we use a composite repository to pull from `standard` and `secure`
+    # locations. `Secure` should contain credentials and key related information that
+    # is encrypted. Presumably, the `secure` GIT repo will have limited access to appropriate
+    # personnel for maintenance, and will not be available to the development staff at large.
+
+    SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE: native
+    SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCHLOCATIONS: 'file:/var/config/insecure,file:/var/config/secure'
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE: git
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_URI: 'file:/var/config/insecure'
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_USERNAME: ${GIT_USERNAME}
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_PASSWORD: ${GIT_PASSWORD}
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_CLONEONSTART: true
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_DEFAULTLABEL: develop
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_TYPE: git
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_URI: 'file:/var/config/secure'
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_USERNAME: ${GIT_USERNAME}
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_PASSWORD: ${GIT_PASSWORD}
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_CLONEONSTART: true
+    # SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_1_DEFAULTLABEL: develop
+    SPRING_CLOUD_STREAM_DEFAULTBINDER: kafka
+
+    # Not secure. Demo Only. In a real k8s implementation, these value should come from
+    # secrets, rather than an .env file
+    SERVER_SSL_KEYSTOREPASSWORD: ${BROADLEAF_SSL_KEYSTORE_PASSWORD}
+    ENCRYPT_KEYSTORE_PASSWORD: ${BROADLEAF_CONFIG_SERVER_FILE_ENCRYPTION_STORE_PASS}
+    SPRING_SECURITY_USER_PASSWORD: ${BROADLEAF_CONFIG_SERVER_PASSWORD}
+
+  image: repository.broadleafcommerce.com:5001/broadleaf/broadleaf-config-server-platform:1.0.4-SNAPSHOT
+  networks:
+    - brokernet
+    - backendnet
+  ports:
+    - '8888:8888'
+  tty: true
+  volumes:
+    # Not secure. Demo Only. In a real k8s implementation, these keystores should come from secrets.
+    # See https://developer.broadleafcommerce.com/shared-concepts/privacy/best-practices#secrets
+    - ${credentials-dir}:/var/keys
+    # Demo only. Mount local filesystem directories to simulate GIT repos.
+    - ${config-dir-insecure}:/var/config/insecure
+    - ${config-dir-secure}:/var/config/secure
+----

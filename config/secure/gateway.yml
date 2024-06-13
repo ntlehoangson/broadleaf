@@ -1,0 +1,48 @@
+# Sensitive environment properties to be hosted by Spring Cloud Config Server can be placed here
+# Note, these should be encrypted with the appropriate prefix syntax. This file is usually populated
+# during execution of the `flex:generate` maven goal at the time of project construction when the
+# config server supporting component is enabled in the manifest. This file is generally placed into a
+# git repository which is referenced by Spring Cloud Config Server setup. See `config/README.adoc` for
+# more details.
+
+server:
+  ssl:
+    key-store-password: '{cipher}{key:version_1}AQBOuMCIOS6qrJIIIi2nbl1H4TcyPawYZbmm790/CuJjxZ4UCWz/9CmO3P9HN3IgH5o9oRWGcuJj96EIIDKbefR/O3vuSjZixCwezmlbuLNief8L4MOgo8jnLpVQ5tNLnDMRpf97AgyTr6gKTUVxj0KjELMJNZHgsGuquQYrnATsr9tyJvSiXvJ1ScUcvXkvOXCYl2fM07llNkxxkf7wMpoh3T+Kxt3j2o4m3txfuUhgQlaN6wY0SPlw4yuGE8UhObkuq/XxfVEgU8FMGlqr7Rdf1mzEWPZ7xQCFDtlZM8XaMqtI/GD5JRYQDutF1MVGTBBIi4vJY3xALsQQGPTlsBNchcTX/uBQCJxUrGFuQ6epdcFOr7naID0C31CLMk4BjhKyioQeGDJaRfgl0RRzeFnc'
+broadleaf:
+  default:
+    server:
+      ssl:
+        key-store: file:/var/keys/https-keystore.jks
+    spring:
+      cloud:
+        stream:
+          kafka:
+            binder:
+              configuration:
+                ssl:
+                  truststore:
+                    location: /var/keys/kafka-truststore.jks
+    java:
+      security:
+        auth:
+          login:
+            config: /var/keys/zk-kafka-client-jaas.conf
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          configuration:
+            ssl:
+              truststore:
+                password: '{cipher}{key:version_1}AQAyWgQbbcYZFoOT9Q3CXitt02P8Va5vz6sphsSAf6Iu+M3TTqM/6UnGdj8UO8Jrq7fzzjwq0amyzpweIbjp1nCwYvNiyK6ajGjtHh1zl5QggStseM4MuiDhW6PB9/NiHPQ9ORIUkKLozqPYyiQtdZ5+35oAuemSZdq70J3Tq+SsvCM7K1Pp5gKvm/acuhsdT0EIqRQdrV4sg4Kad8dPsQx6FByx/x+5quTS2ndorUtTrO15mAeH0+jWSx2bp4bvsjX20yN6Rax+aaMYOUIt0U596CkQlJfvEWuRxogV3BeCyeGmDK2tzuIJBsYYabv4xE4XJbjgqVI7YUtK3l2XxM3bACU08B2Qp59a8BgrNB8sbIQYOR/WEyTyG0MD3/zdfauPCUak99Pxo1O1zOaSMyev'
+            security:
+              protocol: SASL_SSL
+            sasl:
+              mechanism: PLAIN
+  security:
+    oauth2:
+      client:
+        registration:
+          anonymous:
+            client-secret: '{cipher}{key:version_1}AQAIWhDvv5vwrFgMils7l/WCYJPJcn84DpZfIkGuOA37ZX8GmT2a2QIsk79b8I/UI8u+7hskYZZDJzgL+mb1ftuhXbu1eMIHlAPy/KUFHnzOGOBdwfBHRbNLPAneKQ+Wx03owtC/d2r9fEhcP1wgaC3PcNO3z5Fqsz8AU2vALhhYYqI3FyfSBQBa3rw4UB9eURjep3TA919cvevZvyqFCITBOsR9lPEIWHxcmVzXTC4fJVN3rlndQSgIkNGAOuBtn4+QAPvB5LTyDlCy/s5GMfMguTUflESfxX3wyvmPFKNvQkE+wesasYPC1YHILe8LAaho7rWnnWY50HdJhOujIXK/G2/LZsdAxm5jYL4hfGd1FaqciuZarl0lOmG8BIK9hjCVRhqUqWBQHWYLYjGUrGTi'

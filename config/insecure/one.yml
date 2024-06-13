@@ -1,0 +1,30 @@
+# Non-sensitive environment properties to be hosted by Spring Cloud Config Server can be placed here.
+# This file is usually populated during execution of the `flex:generate` maven goal at the time of
+# project construction when the config server supporting component is enabled in the manifest.
+# This file is generally placed into a git repository which is referenced by Spring Cloud Config
+# Server setup. See `config/README.adoc` for more details.
+broadleaf:
+  common:
+    ssl-verification:
+      disabled: true
+  environment:
+    report:
+      disabled: true
+  tenant:
+    global:
+      allowed-locales:
+        - en_US
+        - en
+        - en_GB
+        - es
+        - es_ES
+        - es_MX
+        - fr
+        - fr_FR
+spring:
+  codec:
+    max-in-memory-size: 1048576
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB

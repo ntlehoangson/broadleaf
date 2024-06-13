@@ -1,0 +1,43 @@
+broadleaf:
+  data:
+    loader:
+      # Whether the ingestion will be parallelized on multiple threads. May need to set to
+      # false for successful ingestion into Yugabyte.
+      parallel: true
+      # The maximum number of threads used for concurrent ingestion execution. -1 signifies unbounded.
+      max-concurrent: 6
+      # If true, remove user interactive controls. Useful for server-side automation.
+      headless: false
+      # Comma-delimited list of flex package component names to be excluded from ingestion.
+      # Only enabled components in the manifest are filtered. By default, all manifest enabled
+      # flex components are included, excluding none.
+      flex-exclude:
+      # Comma-delimited list of flex package component names to be included for ingestion.
+      # It may be a subset of components enabled in the manifest. By default, all manifest
+      # enabled flex components are included.
+      flex-include:
+      # Whether the loader should attempt to initialize a schema in the JDBC url target
+      # (if one does not already exist). This satisfies a common strategy where multiple services
+      # are included in a single database installation, only separated into different schemas.
+      # Note, in the case of Oracle, this will result in a different user being installed
+      # per service.
+      schema-initialize: true
+      # Whether liquibase maintenance tables are colocated in the same schema targeted
+      # for the changelog. Note, setting to false may negatively impact ingestion performance.
+      # Only applicable to Postgres and Yugabyte.
+      postgres-liquibase-tables-colocate: true
+      # Whether the system will first attempt to drop all tables in the schema (if applicable) before
+      # attempting to construct the schema.
+      force-drop: false
+      # Max number of iterations to attempt to drop all tables in a schema. Requires that
+      # forceDrop is true.
+      drop-overflow-count: 100
+  environment:
+    report:
+      # Whether to show a full report of the environment values on the console.
+      # Useful for identifying additional properties that can be overridden here.
+      disabled: true
+logging:
+  file:
+    # File where detailed liquibase logs will be emitted (in the current working directory)
+    name: loader.log

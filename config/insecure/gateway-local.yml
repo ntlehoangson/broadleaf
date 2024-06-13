@@ -1,0 +1,45 @@
+broadleaf:
+  gateway:
+    proxyurls:
+      tenant: https://host.docker.internal:8447
+      pricing: https://host.docker.internal:8447
+      creditaccount: https://host.docker.internal:8447
+      commerceweb: https://host.docker.internal:4000
+      bulkoperations: https://host.docker.internal:8447
+      paymenttransaction: https://host.docker.internal:8447
+      openapi: https://host.docker.internal:3003
+      import: https://host.docker.internal:8447
+      content: https://host.docker.internal:8447
+      orderoperation: https://host.docker.internal:8447
+      adminweb: https://host.docker.internal:3000
+      fulfillment: https://host.docker.internal:8447
+      catalog: https://host.docker.internal:8447
+      order: https://host.docker.internal:8447
+      metadata: https://host.docker.internal:8447
+      sandbox: https://host.docker.internal:8447
+      inventory: https://host.docker.internal:8447
+      customer: https://host.docker.internal:8447
+      notification: https://host.docker.internal:8447
+      scheduledjob: https://host.docker.internal:8447
+      offer: https://host.docker.internal:8447
+      shipping: https://host.docker.internal:8447
+      authapi: https://host.docker.internal:8443
+      cartoperation: https://host.docker.internal:8447
+      adminuser: https://host.docker.internal:8447
+      cart: https://host.docker.internal:8447
+      indexer: https://host.docker.internal:8447
+      vendor: https://host.docker.internal:8447
+      menu: https://host.docker.internal:8447
+      adminnavigation: https://host.docker.internal:8447
+      asset: https://host.docker.internal:8447
+      campaign: https://host.docker.internal:8447
+      search: https://host.docker.internal:8447
+      auth: https://host.docker.internal:8443
+      catalogbrowse: https://host.docker.internal:8447
+      ratings: https://host.docker.internal:8447
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          defaultbrokerport: '9094'

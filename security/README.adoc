@@ -1,0 +1,13 @@
+# Credentials
+
+This directory contains various certificates, keystores, credential reports, and/or other sensitive configuration information related to system security that was generated as part of project construction.
+
+This information contained in this directory should never be checked into source control. Rather, it should be stored in a secure location, such as a vault. It is then valid to leverage the information from the vault as necessary. This includes any of the following:
+
+1. Binding the properties from the vault to k8s secrets for use by containers at runtime in your target environment.
+2. Don't directly leverage the vault. Instead, supply the properties to the application by storing encrypted in a Spring Cloud Config Server repository.
+3. Use the vault as a backing store for Spring Cloud Config Server.
+
+The default Broadleaf approach is (2) when the config server supporting component is enabled in the manifest and included in the active docker items in the manifest.
+
+See https://developer.broadleafcommerce.com/shared-concepts/privacy/best-practices#secrets, https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_encryption_and_decryption, and https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#vault-backend for more information.
